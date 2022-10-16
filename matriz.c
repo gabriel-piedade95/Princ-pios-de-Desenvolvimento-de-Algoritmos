@@ -175,17 +175,20 @@ int cavalo(int **M, int n){
     registro * R = encontraValor(M, n);
     empilha(R, P);
     int achou;
-    registro * aux;
+    registro * aux, * temp;
 
     static const int plin[8] = { 2,  1, -1, -2, -2, -1,  1,  2};
     static const int pcol[8] = { 1,  2,  2,  1, -1, -2, -2, -1}; 
 
+    PILHA * Q = criaPilha();
 
     while(P->tam > 0){
 
         aux = desempilha(P);
         achou = 0;
         i = 0; j = 0;
+        
+
 
         while(i < 8 && j < 8){
 
@@ -197,9 +200,11 @@ int cavalo(int **M, int n){
             
                 if(M[a][b] == 0){
                     
+
                     empilha(criaRegistro(a, b, aux->valor+1), P);
-                    
+                    empilha(criaRegistro(a, b, aux->valor+1), Q);
                     M[a][b] = aux->valor+1;
+                    
                     
                     achou = 1;
 
@@ -215,6 +220,12 @@ int cavalo(int **M, int n){
 
         if(achou == 0){
             M[a][b] = 0;
+            while(Q->tam > 0){
+
+                temp = desempilha(Q);
+                M[temp->linha][temp->coluna] = 0;
+                
+            }
         }
         
     }
@@ -259,7 +270,7 @@ int main(){
         imprimeMatriz(M, N);
     }
     else{
-        M = leMatriz(nome, &N);
+        //leMatriz(nome, &N);
         imprimeMatriz(M, N);
         
     }
