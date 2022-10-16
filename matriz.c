@@ -151,6 +151,7 @@ registro * encontraValor(int **M, int N){
 
 }
 
+//NÃO TESTEI ESSA AINDA!!
 int ehVizinho(int lin, int col, int **M, registro * R){
 
     
@@ -163,7 +164,7 @@ int ehVizinho(int lin, int col, int **M, registro * R){
 
 }
 
-
+//AINDA NÃo ESTA PRONTA!!
 int cavalo(int **M, int n){
 
     int i, j;
@@ -224,7 +225,7 @@ int main(){
     int C;
     
     M = leMatriz("tabuleiro52.txt", &N);
-    C = cavalo(M, N);
+    //C = cavalo(M, N);
     liberaMatriz(M, N);
     printf("%d\n", C);
 
